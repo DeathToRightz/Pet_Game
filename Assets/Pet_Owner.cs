@@ -2,48 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class Pet_Owner : MonoBehaviour
 {
-    [SerializeField] TMP_InputField enterName;
+    [SerializeField] Button enterButton;
+    [SerializeField] TMP_InputField enterNameInput;
+    [SerializeField] Slider hungerbar;
     Pet myPet;
    
     void Start()
     {
-        myPet = new Pet();
-
-
-        /*if (myPet.Name == "")
-        {
-            Debug.Log("I dont have a name.");
-
-        }
-        else
-        {
-            Debug.Log($"My name is {myPet.Name}");
-        }
-        if (myPet.Bordeom == 0)
-        {
-            Debug.Log("Im dying of boredom");
-        }
-        else
-        {
-            Debug.Log($"Im this much not bored: {myPet.Bordeom}");
-        }*/
+      
+        enterButton.gameObject.SetActive(false);
+        Debug.Log(hungerbar.value);
     }
 
     
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(enterNameInput.text != "")
+        {
+            enterButton.gameObject.SetActive(true);
+            
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             Debug.Log(myPet.Name);
         }
     }
 
-    public void OnClickPetNameButton(TMP_InputField name)
+    public void OnClickPetNameButton()
     {
-
-        myPet.Name = name.ToString();
+        myPet = new Pet();
+        myPet.Name = enterNameInput.text;
+       
+        
         
     }
 }
