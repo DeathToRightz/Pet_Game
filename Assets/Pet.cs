@@ -65,16 +65,16 @@ public class Pet
         }
     }
     
-    public int Eat( int hunger)
+    public int Eat( )
     {
-        return _energy + hunger;
+        return _energy + 10;
     }
-    public int Play(int play)
+    public int Play()
     {
-        return _boredeom += play;
+        return _boredeom += 10;
     }
-    public int Rest(int rest)
+    public int Rest()
     {
-        return _energy + rest;
+        return _energy + 10;
     }
 }

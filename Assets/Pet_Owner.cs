@@ -6,38 +6,55 @@ using UnityEngine.UI;
 
 public class Pet_Owner : MonoBehaviour
 {
-    [SerializeField] Button enterButton;
+    [Header ("Buttons")]
+    [SerializeField] Button enterNameButton;
+    [SerializeField] Button feedButton;
+    [SerializeField] Button playButton;
+    [SerializeField] Button restButton;
+
+    [Header ("Sliders")]
+    [SerializeField] Slider hungerBar;
+    [Header ("Everything else")]
     [SerializeField] TMP_InputField enterNameInput;
-    [SerializeField] Slider hungerbar;
     Pet myPet;
    
     void Start()
     {
-      
-        enterButton.gameObject.SetActive(false);
-        Debug.Log(hungerbar.value);
+
+        enterNameButton.gameObject.SetActive(false);
+        
     }
 
     
     void Update()
     {
-        if(enterNameInput.text != "")
+        if (enterNameInput)
         {
-            enterButton.gameObject.SetActive(true);
-            
+            if (enterNameInput.text != "")
+            {
+                enterNameButton.gameObject.SetActive(true);
+
+            }
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+        /*else
         {
-            Debug.Log(myPet.Name);
-        }
+            enterNameButton.gameObject.SetActive(false);
+        }*/
+        
+        
     }
 
     public void OnClickPetNameButton()
     {
         myPet = new Pet();
         myPet.Name = enterNameInput.text;
+        enterNameInput.gameObject.SetActive(false);
        
         
-        
+        //hungerbar.value = myPet.Hunger;
+    }
+    public void OnClickFeedButton()
+    {
+        hungerBar.value += myPet.Eat();
     }
 }
