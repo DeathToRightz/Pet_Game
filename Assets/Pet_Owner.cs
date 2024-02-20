@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Pet_Owner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] TMP_InputField enterName;
+    Pet myPet;
+   
     void Start()
     {
-        Pet myPet;
         myPet = new Pet();
-       
+
 
         /*if (myPet.Name == "")
         {
@@ -30,9 +31,19 @@ public class Pet_Owner : MonoBehaviour
         }*/
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(myPet.Name);
+        }
+    }
 
+    public void OnClickPetNameButton(TMP_InputField name)
+    {
+
+        myPet.Name = name.ToString();
+        
     }
 }
