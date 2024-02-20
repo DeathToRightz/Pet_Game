@@ -10,22 +10,29 @@ public class Pet_Owner : MonoBehaviour
         Pet myPet;
         myPet = new Pet();
        
-        // myPet.Name = "Simba";
-        //Debug.Log(myPet.Name);
-        if(myPet.Name == "")
+
+        /*if (myPet.Name == "")
         {
-            Debug.Log("I got no name!");
+            Debug.Log("I dont have a name.");
+
         }
         else
         {
-            Debug.Log($"My new name is {myPet.Name}");
+            Debug.Log($"My name is {myPet.Name}");
         }
-
+        if (myPet.Bordeom == 0)
+        {
+            Debug.Log("Im dying of boredom");
+        }
+        else
+        {
+            Debug.Log($"Im this much not bored: {myPet.Bordeom}");
+        }*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

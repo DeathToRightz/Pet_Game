@@ -53,7 +53,7 @@ public class Pet
         }
     }
 
-    public int energy
+    public int Energy
     {
         get
         {
@@ -63,5 +63,18 @@ public class Pet
         {
             _energy = value;
         }
+    }
+    
+    public int Eat( int hunger)
+    {
+        return _energy + hunger;
+    }
+    public int Play(int play)
+    {
+        return _boredeom += play;
+    }
+    public int Rest(int rest)
+    {
+        return _energy + rest;
     }
 }
