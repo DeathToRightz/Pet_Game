@@ -20,11 +20,10 @@ public class Pet_Owner : MonoBehaviour
     [Header ("Everything else")]
     [SerializeField] TMP_InputField enterNameInput;
     Pet myPet;
-    
-   
+    bool petIsAlive;
+    bool loweringStats = false;
     void Start()
-    {
-        
+    {  
         enterNameButton.gameObject.SetActive(false);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
@@ -43,36 +42,69 @@ public class Pet_Owner : MonoBehaviour
 
             }
         }
-        /*else
+
+        if (petIsAlive && !loweringStats)
         {
-            StartCoroutine(EnterButtonOff());
-        }*/
-        
-        
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    if (Random.Range(0, 10) == 5)
+                    {
+                        Debug.Log("lower");
+                        hungerBar.value = myPet.Hunger -= 2;
+                        loweringStats = true;
+                    }
+                    break;
+
+                case 1:
+                    if (Random.Range(0, 10) == 5)
+                    {
+                        Debug.Log("lower");
+                        hungerBar.value = myPet.Hunger -= 2;
+                        loweringStats = true;
+                    }
+                    break;
+
+            }
+
+
+
+            StartCoroutine(Buffer());
+        }
+
     }
 
     public void OnClickPetNameButton()
     {
         myPet = new Pet();
+        petIsAlive = true;
         myPet.Name = enterNameInput.text;
         enterNameInput.gameObject.SetActive(false);
         playButton.gameObject.SetActive(true);
         restButton.gameObject.SetActive(true);
-        feedButton.gameObject.SetActive(true);
-       
-
-        
+        feedButton.gameObject.SetActive(true);    
     }
     public void OnClickFeedButton()
-    {   
-        hungerBar.value += myPet.Eat();
+    {
+        hungerBar.value = myPet.Eat();   
+        
     }
     public void OnClickPlayButton()
     {
-        boredBar.value += myPet.Play();
+        boredBar.value = myPet.Play();
+       
     }
     public void OnClickRestButton() 
     {
-        energyBar.value += myPet.Rest();
+        energyBar.value = myPet.Rest();
+       
     }
+
+    IEnumerator Buffer()
+    {
+       yield return new WaitForSeconds(15);
+        loweringStats = false;
+
+    }
+    
 }

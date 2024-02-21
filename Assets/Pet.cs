@@ -8,14 +8,11 @@ public class Pet
     public Pet()
     {
         _name = string.Empty; ;
-        _hunger = 0;
-        _boredeom = 0;
-        _energy = 0;
+        _hunger = 100;
+        _boredeom = 100;
+        _energy = 100;
     }
-    public Pet( string name)
-    {
-        _name = name;
-    }
+    
 
     public string Name
     {
@@ -37,7 +34,7 @@ public class Pet
         }
         set
         {
-            _hunger = value;
+            _hunger = value ;
         }
     }
 
@@ -67,7 +64,7 @@ public class Pet
     
     public int Eat( )
     {
-        return _energy + 10;
+        return _hunger += 10;
     }
     public int Play()
     {
@@ -75,6 +72,6 @@ public class Pet
     }
     public int Rest()
     {
-        return _energy + 10;
+        return _energy += 10;
     }
 }
