@@ -14,15 +14,21 @@ public class Pet_Owner : MonoBehaviour
 
     [Header ("Sliders")]
     [SerializeField] Slider hungerBar;
+    [SerializeField] Slider boredBar;
+    [SerializeField] Slider energyBar;
+
     [Header ("Everything else")]
     [SerializeField] TMP_InputField enterNameInput;
     Pet myPet;
+    
    
     void Start()
     {
-
-        enterNameButton.gameObject.SetActive(false);
         
+        enterNameButton.gameObject.SetActive(false);
+        feedButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
+        restButton.gameObject.SetActive(false); 
     }
 
     
@@ -32,13 +38,14 @@ public class Pet_Owner : MonoBehaviour
         {
             if (enterNameInput.text != "")
             {
+               
                 enterNameButton.gameObject.SetActive(true);
 
             }
         }
         /*else
         {
-            enterNameButton.gameObject.SetActive(false);
+            StartCoroutine(EnterButtonOff());
         }*/
         
         
@@ -49,12 +56,23 @@ public class Pet_Owner : MonoBehaviour
         myPet = new Pet();
         myPet.Name = enterNameInput.text;
         enterNameInput.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(true);
+        restButton.gameObject.SetActive(true);
+        feedButton.gameObject.SetActive(true);
        
+
         
-        //hungerbar.value = myPet.Hunger;
     }
     public void OnClickFeedButton()
-    {
+    {   
         hungerBar.value += myPet.Eat();
+    }
+    public void OnClickPlayButton()
+    {
+        boredBar.value += myPet.Play();
+    }
+    public void OnClickRestButton() 
+    {
+        energyBar.value += myPet.Rest();
     }
 }
