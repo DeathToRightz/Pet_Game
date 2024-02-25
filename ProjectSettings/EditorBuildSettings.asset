@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: 6b88b21c06164db4c86a38dbad4d67a2
+  - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: 8678184e6067ba04286d9e48a5783749
+  - enabled: 1
     path: Assets/Scenes/Pet Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Animal Control Scene.unity
+    guid: 34733f06e6ed9644c86eb22b168b3a4f
   m_configObjects: {}

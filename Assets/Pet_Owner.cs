@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Pet_Owner : MonoBehaviour
 {
@@ -19,9 +20,11 @@ public class Pet_Owner : MonoBehaviour
 
     [Header ("Everything else")]
     [SerializeField] TMP_InputField enterNameInput;
+    [SerializeField] TMP_Text petName;
     Pet myPet;
     bool petIsAlive;
     bool loweringStats = false;
+    int lowerStatMultiplyer = 1;
     void Start()
     {  
         enterNameButton.gameObject.SetActive(false);
@@ -45,33 +48,55 @@ public class Pet_Owner : MonoBehaviour
 
         if (petIsAlive && !loweringStats)
         {
+            
             switch (Random.Range(0, 3))
             {
                 case 0:
                     if (Random.Range(0, 10) == 5)
                     {
-                        Debug.Log("lower");
-                        hungerBar.value = myPet.Hunger -= 2;
+                       
+                        hungerBar.value = myPet.Hunger -= lowerStatMultiplyer;
+                        lowerStatMultiplyer++;
                         loweringStats = true;
+                        StartCoroutine(Buffer());
                     }
                     break;
 
                 case 1:
                     if (Random.Range(0, 10) == 5)
                     {
-                        Debug.Log("lower");
-                        hungerBar.value = myPet.Hunger -= 2;
+                       
+                        energyBar.value = myPet.Energy -= lowerStatMultiplyer;
+                        lowerStatMultiplyer++;
                         loweringStats = true;
+                        StartCoroutine(Buffer());
                     }
                     break;
 
+                case 2: 
+                    if(Random.Range(0, 10) == 5)
+                    {
+                       
+                        boredBar.value = myPet.Bordeom -= lowerStatMultiplyer;
+                        lowerStatMultiplyer++;
+                        loweringStats = true;
+                        StartCoroutine(Buffer());
+                    }
+                    break;
             }
-
-
-
-            StartCoroutine(Buffer());
+            
+            
+           
         }
 
+        if (petIsAlive)
+        {
+            if (hungerBar.value == 0 || boredBar.value == 0 || energyBar.value == 0)
+            {
+                SceneManager.LoadScene(3);
+            }
+        }
+        
     }
 
     public void OnClickPetNameButton()
@@ -79,6 +104,7 @@ public class Pet_Owner : MonoBehaviour
         myPet = new Pet();
         petIsAlive = true;
         myPet.Name = enterNameInput.text;
+        petName.text = $"Pet name is: {enterNameInput.text}";
         enterNameInput.gameObject.SetActive(false);
         playButton.gameObject.SetActive(true);
         restButton.gameObject.SetActive(true);
@@ -102,9 +128,18 @@ public class Pet_Owner : MonoBehaviour
 
     IEnumerator Buffer()
     {
-       yield return new WaitForSeconds(15);
-        loweringStats = false;
+        
+       yield return new WaitForSeconds(10);
+       loweringStats = false;
 
     }
+    IEnumerator MultiplyNegative( int statLower)
+    {
+        
+        yield return new WaitForSeconds(8);
+        statLower += 2;
+
+    }
+
     
 }
